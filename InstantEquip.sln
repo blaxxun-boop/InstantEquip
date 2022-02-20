@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstantEquip", "InstantEquip\InstantEquip.csproj", "{3B11F415-0875-428F-8FBA-B3DEFC668D11}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3B11F415-0875-428F-8FBA-B3DEFC668D11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B11F415-0875-428F-8FBA-B3DEFC668D11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B11F415-0875-428F-8FBA-B3DEFC668D11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B11F415-0875-428F-8FBA-B3DEFC668D11}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
