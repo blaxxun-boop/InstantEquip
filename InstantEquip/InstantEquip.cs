@@ -86,4 +86,10 @@ public class InstantEquip : BaseUnityPlugin
 			return true;
 		}
 	}
+
+	[HarmonyPatch(typeof(ZSyncAnimation), nameof(ZSyncAnimation.SetTrigger))]
+	private class RemoveAnimation
+	{
+		private static bool Prefix(string name) => instantEquipWeapons.Value != Toggle.On || name != "equip_hip";
+	}
 }
