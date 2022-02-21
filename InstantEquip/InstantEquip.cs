@@ -10,14 +10,14 @@ namespace InstantEquip;
 public class InstantEquip : BaseUnityPlugin
 {
 	private const string ModName = "InstantEquip";
-	private const string ModVersion = "1.0.1";
+	private const string ModVersion = "1.0.2";
 	private const string ModGUID = "org.bepinex.plugins.instantequip";
 
 	private static ConfigEntry<Toggle> serverConfigLocked = null!;
 	private static ConfigEntry<Toggle> instantEquipWeapons = null!;
 	private static ConfigEntry<Toggle> instantEquipArmor = null!;
 
-	private static readonly ConfigSync configSync = new(ModGUID) { DisplayName = ModName, CurrentVersion = ModVersion, MinimumRequiredVersion = "1.0.1" };
+	private static readonly ConfigSync configSync = new(ModGUID) { DisplayName = ModName, CurrentVersion = ModVersion, MinimumRequiredVersion = "1.0.2" };
 
 	private ConfigEntry<T> config<T>(string group, string name, T value, ConfigDescription description, bool synchronizedSetting = true)
 	{
@@ -54,6 +54,10 @@ public class InstantEquip : BaseUnityPlugin
 	{
 		private static bool Prefix(Player __instance, ItemDrop.ItemData item)
 		{
+			if (__instance.InAttack())
+			{
+				return true;
+			}
 			if (item.IsWeapon() && instantEquipWeapons.Value == Toggle.On)
 			{
 				__instance.EquipItem(item);
@@ -73,6 +77,10 @@ public class InstantEquip : BaseUnityPlugin
 	{
 		private static bool Prefix(Player __instance, ItemDrop.ItemData item)
 		{
+			if (__instance.InAttack())
+			{
+				return true;
+			}
 			if (item.IsWeapon() && instantEquipWeapons.Value == Toggle.On)
 			{
 				__instance.UnequipItem(item);
@@ -90,6 +98,6 @@ public class InstantEquip : BaseUnityPlugin
 	[HarmonyPatch(typeof(ZSyncAnimation), nameof(ZSyncAnimation.SetTrigger))]
 	private class RemoveAnimation
 	{
-		private static bool Prefix(string name) => instantEquipWeapons.Value != Toggle.On || name != "equip_hip";
+		private static bool Prefix(ZSyncAnimation __instance, string name) => instantEquipWeapons.Value != Toggle.On || name != "equip_hip" || __instance.GetComponent<Player>()?.InAttack() == true;
 	}
 }
