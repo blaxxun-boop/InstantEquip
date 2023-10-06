@@ -7,17 +7,18 @@ using ServerSync;
 namespace InstantEquip;
 
 [BepInPlugin(ModGUID, ModName, ModVersion)]
+[BepInIncompatibility("org.bepinex.plugins.valheim_plus")]
 public class InstantEquip : BaseUnityPlugin
 {
 	private const string ModName = "InstantEquip";
-	private const string ModVersion = "1.0.5";
+	private const string ModVersion = "1.0.6";
 	private const string ModGUID = "org.bepinex.plugins.instantequip";
 
 	private static ConfigEntry<Toggle> serverConfigLocked = null!;
 	private static ConfigEntry<Toggle> instantEquipWeapons = null!;
 	private static ConfigEntry<Toggle> instantEquipArmor = null!;
 
-	private static readonly ConfigSync configSync = new(ModGUID) { DisplayName = ModName, CurrentVersion = ModVersion, MinimumRequiredVersion = "1.0.2" };
+	private static readonly ConfigSync configSync = new(ModGUID) { DisplayName = ModName, CurrentVersion = ModVersion, MinimumRequiredVersion = ModVersion };
 
 	private ConfigEntry<T> config<T>(string group, string name, T value, ConfigDescription description, bool synchronizedSetting = true)
 	{
@@ -34,7 +35,7 @@ public class InstantEquip : BaseUnityPlugin
 	private enum Toggle
 	{
 		On = 1,
-		Off = 0
+		Off = 0,
 	}
 
 	public void Awake()
