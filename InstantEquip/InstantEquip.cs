@@ -11,7 +11,7 @@ namespace InstantEquip;
 public class InstantEquip : BaseUnityPlugin
 {
 	private const string ModName = "InstantEquip";
-	private const string ModVersion = "1.0.6";
+	private const string ModVersion = "1.0.7";
 	private const string ModGUID = "org.bepinex.plugins.instantequip";
 
 	private static ConfigEntry<Toggle> serverConfigLocked = null!;
